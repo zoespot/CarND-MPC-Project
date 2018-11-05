@@ -11,7 +11,14 @@ The control model used is **kinematic bicycle model**.
 
 The state variables are: position x,y, orientation psi, velocity v, cross track error cte and orientation error epsi. The actuators are steering angle delta and acceleration a. The model update equations are as below. Lf is the distance of vehicle mass center to its front axle.
 
-![model update equations](./model_update.JPG)   
+![model update equations](./model_update.JPG) 
+
+The steering angle across the 1 lap run:
+
+![steering angle](./steering_angle.JPG)
+
+Steering angle converged smoothly in fist 15 time step (1.5s) with cost function compenents weights manually tuned. 
+![steering angle transition](./steering_angle_converge.JPG)
 
 ## Timestep Length and Elapsed Duration (N & dt)
 Total time of model length of 1 second is chosen to balance the need of prediction reach and run-time efficiency of the model predictive control. N * dt = 1s. I've tried (N & dt) combination of (10,0.1), (20, 0.05) and (5,0.2). Only N=10, dt = 0.1s generates good predictive trajectory along the road direction. (20, 0.005) made the car sway vigorously at the beginning, and (5, 0.2) made the car deviate to the right curb after a few second, with other hyperparameters settings kept the same. 
